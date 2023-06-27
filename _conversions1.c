@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+
 
 /**
  * _printf - function that handles the conversion specifiers c, s and %
@@ -11,8 +13,10 @@
  */
 int _printf(const char *format, ...)
 {
-	int a, num = 0, len = 0;
+	int a, num = 0, len = 0, digits = 0;
 	const char *p;
+	char *buffer;
+	int temp;
 	/* abs is declared to hold variable arguments */
 	va_list abs;
 	/*
@@ -89,6 +93,55 @@ int _printf(const char *format, ...)
 				 * is incremented by the length of the string
 				 */
 				num += len;
+			}
+			/* The code checks if the next character after 's' is
+			 * 'd' or 'i'
+			 */
+			else if (*format == 'd' || *format == 'i')
+			{
+				a = va_arg(abs, int);
+				temp = a;
+				/* temp is used to store a copy of the integer so that
+				 * the original value of a remains unchanged
+				 * during the calculation.
+				 */
+				if (temp == 0)
+				{
+					/* digits keeps track of the number of
+					 * digits in the integer
+					 */
+					digits++;
+				}
+				else
+				{
+					/* this snippet counts the number of
+					 * digits in the integer
+					 */
+					while (temp != 0)
+					{
+						digits++;
+						temp /= 10;
+					}
+
+				}
+				/* allocate memory to a buffer to store the
+				 * string representation of the integer
+				 * (varable arugment 'a') obtained with va_arg
+				 */
+				buffer = malloc(digits * sizeof(char) + 1);
+				if (buffer == NULL)
+				{
+					return (-1);
+				}
+				/* to convert the integer 'a' to a string representation
+				 * we pass buffer as destination, digits + 1 as size, %d as
+				 * format specifier, and a as the source to
+				 * snprintf
+				 */
+				snprintf(buffer, digits + 1, "%d", a);
+				write(1, buffer, digits);
+				num += digits;
+				free(buffer);
 			}
 		}
 		else
