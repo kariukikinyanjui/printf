@@ -18,7 +18,7 @@ struct Formatmapping format_mappings[] = {
  * _putchar - writes character to stdout
  * @c: character
  *
- * Return: output
+ * Return: character to stdout
  */
 int _putchar(char c)
 {
