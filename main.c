@@ -1,6 +1,10 @@
 #include <limits.h>
 #include <stdio.h>
 #include "main.h"
+<<<<<<< HEAD
+=======
+#include "handlers.h"
+>>>>>>> 6362900c9225f5c471f95321aedda04b2887499e
 
 /**
  * main - Entry point
@@ -39,6 +43,9 @@ int main(void)
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
     _printf("Unknown:[%r]\n");
+<<<<<<< HEAD
     printf("Unknown:[%r]\n");
+=======
+>>>>>>> 6362900c9225f5c471f95321aedda04b2887499e
     return (0);
 }
