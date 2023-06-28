@@ -2,7 +2,11 @@
 #define _HANDLERS_H
 
 #include <stdarg.h>
-
+struct Formatmapping
+{
+	char specifier;
+	int (*print_func)(va_list list);
+}; 
 int handle_string(va_list arg);
 int handle_char(va_list arg);
 int handle_percent(va_list arg);

@@ -1,8 +1,16 @@
 #include "main.h"
 #include "handlers.h"
 
+/**
+ * _printf - a function that writes formated outputs to stdout based on string
+ * representing format specifier.
+ *
+ * Return: on success return count of outputed characters.
+ */
+
 int (*get_handle(char specifier))(va_list);
 int _putchar(char c);
+
 
 int _printf(const char *format, ...)
 {
@@ -10,10 +18,10 @@ int _printf(const char *format, ...)
 	int i = 0, count = 0;
 	int (*handle)(va_list);
 
-		
+
 	va_start(arguments, format);
-	
-	while (format && format[i])
+
+	while (format != NULL && format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
@@ -41,8 +49,8 @@ int _printf(const char *format, ...)
 			count++;
 			i++;
 		}
-	}	
+	}
 	va_end(arguments);
 
-	return count;
-}		
+	return (count);
+}

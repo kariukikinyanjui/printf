@@ -1,53 +1,74 @@
 #include "main.h"
 #include "handlers.h"
 
-
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
+/**
+ * handle_string - a function to handle operation for 's' specifier
+ * @arg: argument to print
+ *
+ * Return: number of character printed
+ */
 int handle_string(va_list arg)
 {
-	
+
 	char *str = va_arg(arg, char *);
 	int count = 0;
 	int len = 0;
+
 	while (str[len] != '\0')
 	{
-	
+
 		len++;
-		write (1, str, len);
+		write(1, str, len);
 
 		count += len;
 	}
 	return (count);
 }
-	
 
+/**
+ * handle_char - a function to handle operation for 'c' specifier
+ * @arg: argument to print
+ *
+ * Return: number of character printed
+ */
 int handle_char(va_list arg)
 {
 	char a = va_arg(arg, int);
 	int count = 0;
+
 	if (a)
 	{
 		write(1, &a, 1);
-	}	
-	
+	}
+
 	return (count);
 
 }
 
+/**
+ * handle_percent - a function to handle operation for printing %
+ * @arg: argument to print
+ *
+ * Return: number of character printed
+ */
 int handle_percent(va_list arg)
 {
 	int count = 0;
 
-	write(1, "%", 1);
+	write(1, &arg, 1);
 	count++;
 
 	return (count);
 
 }
+
+/**
+ * handle_decimal - a function to handle operation for printing decimals using
+ * '%d' specifier
+ * @arg: argument to print
+ *
+ * Return: number of character printed
+ */
 
 int handle_decimal(va_list arg)
 {
@@ -57,12 +78,20 @@ int handle_decimal(va_list arg)
 	/* Handle the decimal converstion and print the result */
 	char buffer[BUFF_SIZE];
 	int len = sprintf(buffer, "%d", number);
+
 	write(1, buffer, len);
 	count += len;
 
 	return (count);
 }
 
+/**
+ * handle_integer - a function to handle operation for printing integer based
+ * on '%i' specifier
+ * @arg: argument to print
+ *
+ * Return: number of character printed
+ */
 int handle_integer(va_list arg)
 {
 	int number = va_arg(arg, int);
@@ -70,6 +99,7 @@ int handle_integer(va_list arg)
 
 	char buffer[BUFF_SIZE];
 	int len = sprintf(buffer, "%i", number);
+
 	write(1, buffer, len);
 	count += len;
 
