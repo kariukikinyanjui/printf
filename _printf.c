@@ -8,7 +8,11 @@
  * Return: on success return count of outputed characters.
  */
 
-int (*get_handle(char specifier))(va_list);
+/**
+ * BUG: This declaration is a duplicate to one already present in main.h
+ * Without duplicate (deleted or commented out) declaration here, compilation error occurs
+ */
+ int (*get_handle(char specifier))(va_list);
 int _putchar(char c);
 
 
@@ -23,12 +27,24 @@ int _printf(const char *format, ...)
 
 	while (format != NULL && format[i] != '\0')
 	{
+		/**
+		 * A check for start of format specifier
+		 */
 		if (format[i] == '%')
 		{
 			i++;
+			/**
+			 * Check the next character to use as specifier symbol
+			 */
 			if (format[i] != '\0')
 			{
+				/**
+				 * pass specifier to handle selector
+				 * returns appropraite function to handle
+				 * specification
+				 */
 				handle = get_handle(format[i]);
+				
 				if (handle != NULL)
 				{
 					count += handle(arguments);

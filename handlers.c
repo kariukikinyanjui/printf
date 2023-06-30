@@ -16,12 +16,12 @@ int handle_string(va_list arg)
 
 	while (str[len] != '\0')
 	{
-
 		len++;
-		write(1, str, len);
-
-		count += len;
 	}
+
+	write(1, str, len);
+	count += len;
+
 	return (count);
 }
 
@@ -39,6 +39,7 @@ int handle_char(va_list arg)
 	if (a)
 	{
 		write(1, &a, 1);
+		count++;
 	}
 
 	return (count);
