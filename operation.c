@@ -13,6 +13,7 @@ struct Formatmapping format_mappings[] = {
 	{'c', handle_char},
 	{'%', handle_percent},
 	{'d', handle_decimal},
+	{'u', handle_unsigned_int},
 	{'i', handle_integer}
 };
 
