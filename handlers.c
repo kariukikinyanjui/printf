@@ -1,5 +1,4 @@
 #include "main.h"
-#include "handlers.h"
 
 /**
  * handle_string - a function to handle operation for 's' specifier

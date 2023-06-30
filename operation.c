@@ -1,7 +1,10 @@
 #include "main.h"
-#include "handlers.h"
 
-
+int handle_string(va_list arg);
+int handle_char(va_list arg);
+int handle_percent(va_list arg);
+int handle_decimal(va_list arg);
+int handle_integer(va_list arg);
 /**
  * struct Formatmapping - an array of structures used to map specifier
  */
@@ -12,6 +15,7 @@ struct Formatmapping format_mappings[] = {
 	{'d', handle_decimal},
 	{'i', handle_integer}
 };
+
 
 
 /**
