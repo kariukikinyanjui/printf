@@ -1,5 +1,4 @@
 #include "main.h"
-#include "handlers.h"
 
 /**
  * handle_string - a function to handle operation for 's' specifier
@@ -16,12 +15,12 @@ int handle_string(va_list arg)
 
 	while (str[len] != '\0')
 	{
-
 		len++;
-		write(1, str, len);
-
-		count += len;
 	}
+
+	write(1, str, len);
+	count += len;
+
 	return (count);
 }
 
@@ -39,6 +38,7 @@ int handle_char(va_list arg)
 	if (a)
 	{
 		write(1, &a, 1);
+		count++;
 	}
 
 	return (count);
@@ -90,7 +90,7 @@ int handle_decimal(va_list arg)
  * on '%i' specifier
  * @arg: argument to print
  *
- * Return: number of character printed
+ * Return: number of characters printed
  */
 int handle_integer(va_list arg)
 {
@@ -103,5 +103,24 @@ int handle_integer(va_list arg)
 	write(1, buffer, len);
 	count += len;
 
+	return (count);
+}
+
+/**
+ * handle_unsigned_int - handler for unsigned int
+ * @arg: argument to handle
+ * 
+ * Return: number of characters printed
+ */
+int handle_unsigned_int(va_list arg)
+{
+	unsigned int num;
+	unsigned int count = 0;
+	
+	num = va_arg(arg, unsigned int);
+
+	_putchar(num);
+	count++;
+	
 	return (count);
 }
