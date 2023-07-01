@@ -28,6 +28,7 @@ int handle_percent(va_list arg);
 int handle_decimal(va_list arg);
 int handle_integer(va_list arg);
 int handle_unsigned_int(va_list arg);
+int handle_octal(va_list arg);
 
 int (*get_handle(char specifier))(va_list);
 
