@@ -53,12 +53,11 @@ int handle_char(va_list arg)
  */
 int handle_percent(va_list arg)
 {
-	int count = 0;
+	(void)arg;
 
-	write(1, &arg, 1);
-	count++;
+	_putchar('%');
 
-	return (count);
+	return (1);
 
 }
 
@@ -106,21 +105,4 @@ int handle_integer(va_list arg)
 	return (count);
 }
 
-/**
- * handle_unsigned_int - handler for unsigned int
- * @arg: argument to handle
- * 
- * Return: number of characters printed
- */
-int handle_unsigned_int(va_list arg)
-{
-	unsigned int num;
-	unsigned int count = 0;
-	
-	num = va_arg(arg, unsigned int);
 
-	_putchar(num);
-	count++;
-	
-	return (count);
-}
