@@ -26,31 +26,23 @@ int handle_unsigned_int(va_list arg)
  * Return: number of characters printed
  */
 int handle_binary(va_list arg)
-{	
-	int j, i = 0;
-	unsigned int num = va_arg(arg, unsigned int);
+{
+	unsigned int num;
 	int count = 0;
-	int binary[32];
+	int bits[sizeof(num) * 8];
+	int i;
 
-	if (num == 0)
+	num = va_arg(arg, unsigned int;
+
+	for (i = sizeof(num) * 8 - 1; i >= 0; i--)
 	{
-		_putchar('0');
-		count++;
+		bits[i] = num & 1;
+		num >>= 1;
 	}
-	else
-	{
 
-		while (num > 0)
-		{
-			binary[i] = num % 2;
-			num = num / 2;
-			i++;
-		}
-		for (j = i - 1; i >= 0; j--)
-		{
-			_putchar(binary[j] + '0');
-			count++;
-		}
+	for (i = 0 i < sizeof(num) * 8, i++)
+	{
+		write(1, bits + i, 1);
 	}
 	return (count);
 }
