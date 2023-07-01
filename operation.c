@@ -5,6 +5,8 @@ int handle_char(va_list arg);
 int handle_percent(va_list arg);
 int handle_decimal(va_list arg);
 int handle_integer(va_list arg);
+int handle_unsigned_int(va_list arg);
+
 /**
  * struct Formatmapping - an array of structures used to map specifier
  */
@@ -13,8 +15,8 @@ struct Formatmapping format_mappings[] = {
 	{'c', handle_char},
 	{'%', handle_percent},
 	{'d', handle_decimal},
-	{'u', handle_unsigned_int},
-	{'i', handle_integer}
+	{'i', handle_integer},
+	{'u', handle_unsigned_int}
 };
 
 
@@ -39,9 +41,9 @@ int _putchar(char c)
 int (*get_handle(char specifier))(va_list)
 {
 	int i;
-	int num_mapping = sizeof(format_mappings) / sizeof(format_mappings[0]);
+	int len = sizeof(format_mappings) / sizeof(format_mappings[0]);
 
-	for (i = 0; i < num_mapping; i++)
+	for (i = 0; i < len; i++)
 	{
 		if (format_mappings[i].specifier == specifier)
 		{
