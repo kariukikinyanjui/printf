@@ -17,7 +17,7 @@ struct Formatmapping format_mappings[] = {
 	{'%', handle_percent},
 	{'d', handle_decimal},
 	{'i', handle_integer},
-	{'u', handle_unsigned_int}
+	{'u', handle_unsigned_int},
 	{'u', handle_binary},
 };
 

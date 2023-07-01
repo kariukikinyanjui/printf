@@ -46,7 +46,7 @@ int handle_binary(va_list arg)
 			num = num / 2;
 			i++;
 		}
-		for (i - 1; i >= 0; j--)
+		for (j = i - 1; i >= 0; j--)
 		{
 			_putchar(binary[j] + '0');
 			count++;
