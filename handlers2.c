@@ -20,23 +20,18 @@ int handle_unsigned_int(va_list arg)
 
 	return (count);
 }
-
 /**
- * handle_octal - a function to handle opeation for printing octal
+ * handle_binary - a function to handle operations for printing binary
  * @arg: argument to print
- *
  * Return: number of characters printed
  */
-int handle_octal(va_list arg)
-{
-	unsigned int num;
-	int j, i, count = 0;
-	/* We assume that unsigned in can have at most 21 octal digits */ 	
-	char octal[22];
+int handle_binary(va_list arg)
+{	
+	int j, i = 0;
+	unsigned int num = va_arg(arg, unsigned int);
+	int count = 0;
+	int binary[32];
 
-	num = va_arg(arg, unsigned int);
-
-	/* handle case for Zero */
 	if (num == 0)
 	{
 		_putchar('0');
@@ -44,21 +39,18 @@ int handle_octal(va_list arg)
 	}
 	else
 	{
-		i = 0;
 
 		while (num > 0)
 		{
-			octal[i] = (num % 8) + '0';
-			num = num / 8;
+			binary[i] = num % 2;
+			num = num / 2;
 			i++;
 		}
-
-		for (j = i - 1; j >= 0; j--)
+		for (i - 1; i >= 0; j--)
 		{
-			_putchar(octal[j]);
+			_putchar(binary[j] + '0');
 			count++;
 		}
 	}
-
 	return (count);
 }
