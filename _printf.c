@@ -1,21 +1,16 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+int (*get_handle(char specifier))(va_list);
+int _putchar(char c);
+
 /**
  * _printf - a function that writes formated outputs to stdout based on string
  * representing format specifier.
+ * @format: string of format specifiers
  *
  * Return: on success return count of outputed characters.
  */
-
-/**
- * BUG: This declaration is a duplicate to one already present in main.h
- * Without duplicate (deleted or commented out) declaration here, compilation error occurs
- */
- int (*get_handle(char specifier))(va_list);
-int _putchar(char c);
-
-
 int _printf(const char *format, ...)
 {
 	va_list arguments;
@@ -44,7 +39,7 @@ int _printf(const char *format, ...)
 				 * specification
 				 */
 				handle = get_handle(format[i]);
-				
+
 				if (handle != NULL)
 				{
 					count += handle(arguments);

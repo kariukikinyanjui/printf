@@ -36,6 +36,7 @@ int _putchar(char c)
 
 /**
  * get_handle - a function that selects operation based on specifier
+ * @specifier: function parameter
  *
  * Return: matching function pointer or NULL if no match found
  *

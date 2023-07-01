@@ -9,12 +9,15 @@
 
 /**
  * struct Formatmapping - a struct used to map specifiers
+ * @specifier: struct member
+ * @print_func: struct member
+ *
  */
 struct Formatmapping
 {
 	char specifier;
 	int (*print_func)(va_list list);
-}; 
+};
 
 
 int _putchar(char c);
