@@ -8,20 +8,6 @@ int handle_integer(va_list arg);
 int handle_unsigned_int(va_list arg);
 int handle_binary(va_list arg);
 
-/**
- * struct Formatmapping - an array of structures used to map specifier
- */
-struct Formatmapping format_mappings[] = {
-	{'s', handle_string},
-	{'c', handle_char},
-	{'%', handle_percent},
-	{'d', handle_decimal},
-	{'i', handle_integer},
-	{'u', handle_unsigned_int},
-	{'b', handle_binary},
-};
-
-
 
 /**
  * _putchar - writes character to stdout
@@ -43,6 +29,17 @@ int _putchar(char c)
  */
 int (*get_handle(char specifier))(va_list)
 {
+	/**
+	 *  struct Formatmapping - an array of structures used to map specifier
+	 */
+	struct Formatmapping format_mappings[] = {
+		{'s', handle_string},
+		{'c', handle_char},
+		{'%', handle_percent},
+		{'d', handle_decimal},
+		{'i', handle_integer},
+		{'u', handle_unsigned_int}
+	};
 	int i;
 	int len = sizeof(format_mappings) / sizeof(format_mappings[0]);
 
