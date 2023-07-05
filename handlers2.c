@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdarg.h>
 
 
 
@@ -20,6 +21,7 @@ int handle_unsigned_int(va_list arg)
 
 	return (count);
 }
+
 /**
  * handle_binary - a function to handle operations for printing binary
  * @arg: argument to print
@@ -31,8 +33,9 @@ int handle_binary(va_list arg)
 	int count = 0;
 	int bits[sizeof(num) * 8];
 	int i;
+	char bitChar;
 
-	num = va_arg(arg, unsigned int;
+	num = va_arg(arg, unsigned int);
 
 	for (i = sizeof(num) * 8 - 1; i >= 0; i--)
 	{
@@ -40,9 +43,11 @@ int handle_binary(va_list arg)
 		num >>= 1;
 	}
 
-	for (i = 0 i < sizeof(num) * 8, i++)
+	for (i = 0; i < sizeof(num) * 8; i++)
 	{
-		write(1, bits + i, 1);
+		bitChar = bits[i] + '0';
+		write(1, &bitChar, 1);
+		count++;
 	}
 	return (count);
 }
