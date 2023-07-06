@@ -7,31 +7,32 @@
 #include <unistd.h>
 #include <stdio.h>
 
+
 /**
- * struct Formatmapping - a struct used to map specifiers
- * @specifier: struct member
- * @print_func: struct member
- *
+ * struct print_fn -Struct for conversion specifiers and their corresponding
+ * functions
+ * @specifier: The conversion specifier 
+ * @fn: The function pointer to the corresponding function.
  */
-struct Formatmapping
+typedef struct print_fn 
 {
 	char specifier;
-	int (*print_func)(va_list list);
-};
+	int (*fn)(va_list);
+} print_fn_t;
 
 
-int _putchar(char c);
+int _printf(const char *format, ...);
 
-int handle_string(va_list arg);
-int handle_char(va_list arg);
-int handle_percent(va_list arg);
-int handle_decimal(va_list arg);
-int handle_integer(va_list arg);
-int handle_unsigned_int(va_list arg);
-int handle_binary(va_list arg);
+int print_string(va_list arg);
+int print_char(va_list arg);
+int print_percent(va_list arg);
+int print_decimal(va_list arg);
+int print_integer(va_list arg);
+int print_unsigned_int(va_list arg);
+int print_binary(va_list arg);
 
 int (*get_handle(char specifier))(va_list);
 
-int _printf(const char *format, ...);
+int _putchar(char c);
 
 #endif /* _MAIN_H */

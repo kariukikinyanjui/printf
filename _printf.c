@@ -1,67 +1,50 @@
-#include <unistd.h>
 #include <stdarg.h>
-
-int (*get_handle(char specifier))(va_list);
-int _putchar(char c);
+#include "main.h"
 
 /**
- * _printf - a function that writes formated outputs to stdout based on string
- * representing format specifier.
- * @format: string of format specifiers
+ * _printf -
  *
- * Return: on success return count of outputed characters.
  */
 int _printf(const char *format, ...)
 {
-	va_list arguments;
-	int i = 0, count = 0;
-	int (*handle)(va_list);
+	int char_count, i, found;
+	va_list arg;
+	
+	va_start(arg, format);
+	char_count = 0;
+	found = 0;
 
-
-	va_start(arguments, format);
-
-	while (format != NULL && format[i] != '\0')
+	while (*format)
 	{
-		/**
-		 * A check for start of format specifier
-		 */
-		if (format[i] == '%')
+		if (*format != '%')
 		{
-			i++;
-			/**
-			 * Check the next character to use as specifier symbol
-			 */
-			if (format[i] != '\0')
-			{
-				/**
-				 * pass specifier to handle selector
-				 * returns appropraite function to handle
-				 * specification
-				 */
-				handle = get_handle(format[i]);
-
-				if (handle != NULL)
-				{
-					count += handle(arguments);
-				}
-				else
-				{
-					/* Print regular character */
-					_putchar(format[i]);
-					count++;
-				}
-				i++;
-			}
+			_putchar(*format);
+			char_count++;
 		}
 		else
 		{
-			/* Print retugla character */
-			_putchar(format[i]);
-			count++;
-			i++;
+			format++;
+			for (i = 0; print_fns[i].specifier != '\0'; i++)
+			{
+				if (*format == print_fns[i].specifier)
+				{
+					char_count += print_fns[i].fn(arg);
+					found = 1;
+					break;
+				}
+			}
+			if (!found)
+			{
+				_putchar('%');
+				_putchar(*format);
+				char_count += 2;
+			}
 		}
-	}
-	va_end(arguments);
 
-	return (count);
-}
+		format++;
+	}
+
+	va_end(arg);
+	return (
+
+
