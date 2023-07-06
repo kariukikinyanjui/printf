@@ -11,11 +11,16 @@
 int print_char(va_list args)
 {
 	char c;
+	int char_count;
 
-	c = (char)va_arg(args, int);
-	return (_putchar(c));
+	c = va_arg(args, int);
+	char_count = 0;
+	
+	char_count += printf("[char: %c]", c);
+
+	return (char_count);
 }
-<<<<<<< HEAD
+
 /**
  * print_string - a function that prints a string
  * @args: function parameter
@@ -26,11 +31,14 @@ int print_string(va_list args)
 	char *str = va_arg(args, char *);
 	int char_count = 0;
 
-	while (*str)
+	if (str == NULL)
 	{
-		putchar(*str++);
-		char_count++;
+		char_count += printf("[string: (null)]");
+		return (char_count);
 	}
+
+	char_count += printf("[string: %s]", str);
+
 	return (char_count);
 }
 /**
@@ -40,10 +48,14 @@ int print_string(va_list args)
  */
 int print_integer(va_list args)
 {
-	int num = va_arg(args, int);
-	int char_count = 0;
-	int is_negative = 0;
-
+	int divisor, num, temp, char_count;
+	int digit, is_negative, num_digits, i;
+	
+	num = va_arg(args, int);
+	char_count = 0;
+	(void)is_negative;
+	num_digits = 0;
+	
 	if (num == 0)
 	{
 		putchar('0');
@@ -58,15 +70,15 @@ int print_integer(va_list args)
 		putchar('-');
 		char_count++;
 	}
-	int num_digits = 0;
-	int temp = num;
+	
+	temp = num;
 
 	while (temp > 0)
 	{
 		temp /= 10;
 		num_digits++;
 	}
-	int i, divisor = 1;
+	divisor = 1;
 
 	for (i = 1; i < num_digits; i++)
 	{
@@ -74,7 +86,7 @@ int print_integer(va_list args)
 	}
 	while (divisor > 0)
 	{
-		int digit = num / divisor;
+		digit = num / divisor;
 		num %= divisor;
 		divisor /= 10;
 		putchar(digit + '0');
@@ -93,7 +105,7 @@ int print_binary(va_list args)
 	int char_count = 0, i = 0, j;
 	int binary_digits[32];
 
-	if (num == 0);
+	if (num == 0)
 	{
 		putchar('0');
 		char_count++;
@@ -118,32 +130,32 @@ int print_binary(va_list args)
  * @args: function parameter
  * Return: number of characters
  */
-int print_unsigned_integer(va_list args)
+int print_unsigned_int(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
-	int char_count = 0;
-
+	int i, num_digits = 0, char_count = 0;
+	unsigned int digit, temp = num, divisor = 1;
+	
 	if (num == 0)
 	{
-		putchar('0');
+		_putchar('0');
 		char_count++;
 		return (char_count);
 	}
-	int i, num_digits = 0;
-	unsigned int temp = num, divisor = 1;
+	
 
 	while (temp > 0)
 	{
 		temp /= 10;
 		num_digits++;
 	}
-	for (i = '''c; i = 1; i < num_digits; i++)
+	for (i = 1; i < num_digits; i++)
 	{
 		divisor *= 10;
 	}
 	while (divisor > 0)
 	{
-		unsigned int digit = num / divisor;
+		digit = num / divisor;
 		num %= divisor;
 		divisor /= 10;
 		putchar(digit + '0');
