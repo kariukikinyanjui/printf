@@ -54,51 +54,26 @@ int print_string(va_list args)
  */
 int print_integer(va_list args)
 {
-	int divisor, num, temp, char_count;
-	int digit, is_negative, num_digits, i;
-	
-	num = va_arg(args, int);
+	int num, char_count;
+
+	num = (int)va_arg(args, int);
 	char_count = 0;
-	(void)is_negative;
-	num_digits = 0;
-	
+
 	if (num == 0)
 	{
-		putchar('0');
-		char_count++;
-		return (char_count);
+		_putchar('0');
+		return (++char_count);
 	}
-
-	if (num < 0)
+	else if (num < 1)
 	{
-		is_negative = 1;
-		num = -num;
-		putchar('-');
-		char_count++;
+		write (1, &num, 1);
+		return (++char_count);
 	}
-	
-	temp = num;
-
-	while (temp > 0)
+	else
 	{
-		temp /= 10;
-		num_digits++;
+		_putchar(num);
 	}
-	divisor = 1;
-
-	for (i = 1; i < num_digits; i++)
-	{
-		divisor *= 10;
-	}
-	while (divisor > 0)
-	{
-		digit = num / divisor;
-		num %= divisor;
-		divisor /= 10;
-		putchar(digit + '0');
-		char_count++;
-	}
-	return (char_count);
+	return (++char_count);
 }
 /**
  * print_binary - a function that prints binary
