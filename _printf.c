@@ -44,22 +44,31 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
-			for (i = 0; print_fns[i].specifier != '\0'; i++)
-			{
-				if (*format == print_fns[i].specifier)
-				{
-					char_count += print_fns[i].fn(arg);
-					found = 1;
-					break;
-				}
-			}
-			if (!found)
+			if (*format == '%')
 			{
 				_putchar('%');
-				_putchar(*format);
-				char_count += 2;
+				char_count++;
 			}
-		}
+			else
+			{
+				for (i = 0; print_fns[i].specifier != '\0'; i++)
+				{
+					if (*format == print_fns[i].specifier)
+					{
+						char_count += print_fns[i].fn(arg);
+						found = 1;
+						break;
+					}
+				}
+				
+				if (!found)
+				{
+					_putchar('%');
+					_putchar(*format);
+					char_count += 2;
+				}
+			}
+		}	
 
 		format++;
 	}
@@ -67,7 +76,3 @@ int _printf(const char *format, ...)
 	va_end(arg);
 	return (char_count);
 }
-
-
-
-
