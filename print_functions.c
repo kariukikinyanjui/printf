@@ -37,7 +37,9 @@ int print_string(va_list args)
 		return (char_count);
 	}
 
-	char_count += printf("[string: %s]", str);
+
+	
+	char_count += printf("%s", str);
 
 	return (char_count);
 }
