@@ -15,10 +15,10 @@ int print_char(va_list args)
 
 	c = va_arg(args, int);
 	char_count = 0;
-	
-	char_count += printf("[char: %c]", c);
 
-	return (char_count);
+	_putchar(c);
+
+	return (char_count++);
 }
 
 /**
