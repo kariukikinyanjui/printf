@@ -37,9 +37,14 @@ int print_string(va_list args)
 		return (char_count);
 	}
 
-
-	
-	char_count += printf("%s", str);
+	while (*str != '\0')
+	{
+		putchar(*str);
+		char_count++;
+		str++;
+	}
+	putchar(']');
+	char_count++;
 
 	return (char_count);
 }
