@@ -36,8 +36,17 @@ int print_string(va_list args)
 		char_count += printf("[string: (null)]");
 		return (char_count);
 	}
+	putchar(']');
+	char_count++;
 
-	char_count += printf("[string: %s]", str);
+	while (*str != '\0')
+	{
+		putchar(*str);
+		char_count++;
+		str++;
+	}
+	putchar(']');
+	char_count++;
 
 	return (char_count);
 }
