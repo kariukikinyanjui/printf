@@ -39,11 +39,10 @@ int print_string(va_list args)
 
 	while (*str != '\0')
 	{
-		putchar(*str);
+		_putchar(*str);
 		char_count++;
 		str++;
 	}
-	putchar(']');
 	char_count++;
 
 	return (char_count);
