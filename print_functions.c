@@ -15,6 +15,7 @@ int print_char(va_list args)
 	c = (char)va_arg(args, int);
 	return (_putchar(c));
 }
+<<<<<<< HEAD
 /**
  * print_string - a function that prints a string
  * @args: function parameter

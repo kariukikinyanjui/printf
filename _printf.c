@@ -1,15 +1,35 @@
 #include <stdarg.h>
 #include "main.h"
 
+
+
 /**
- * _printf -
+ * _printf - A function that produces output according to a format.
+ * @format: format string representing specifiers
  *
+ * Returns the number of characters printed(excluding the null byte).
  */
 int _printf(const char *format, ...)
 {
 	int char_count, i, found;
 	va_list arg;
-	
+
+	print_fn_t print_fns[] = {
+	{'c', print_char},
+	{'s', print_string},
+	{'i', print_integer},
+	{'d', print_integer},
+	{'b', print_binary},
+	{'u', print_unsigned_int},
+	{'o', print_octal},
+	{'x', print_hexadecimal},
+	{'X', print_hexadecimal_upper},
+	{'p', print_pointer},
+	{'r', print_reverse},
+	{'R', print_rot13},
+	{'\0', NULL}
+};
+
 	va_start(arg, format);
 	char_count = 0;
 	found = 0;
@@ -45,6 +65,9 @@ int _printf(const char *format, ...)
 	}
 
 	va_end(arg);
-	return (
+	return (char_count);
+}
+
+
 
 
